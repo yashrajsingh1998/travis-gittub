@@ -13,9 +13,6 @@ int main()
     std::cout << "took " << sec.count() << " seconds\n";
     return 0;
 
-	std::cout<<"Buildg";
-	std::cout<<"Build Complete";
-	std::cout<<"final verification done";
-	return 0;
+	
 
 }

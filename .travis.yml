@@ -1,0 +1,86 @@
+language: cpp
+
+env:
+  global:
+    # Ubuntu version
+    - LINUX_DIST=trusty
+    - DEPS_DIR=${TRAVIS_BUILD_DIR}/deps
+    # Global build options and C++ flags
+    - CXX_FLAGS="-Wall -pedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
+    # Misc
+    - RUN_TESTS=true
+    - COVERAGE=false
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: true
+      compiler: gcc
+      addons:
+       apt:
+         packages: &precise_latest_boost_packages
+           - gcc-4.8
+           - g++-4.8
+           #- gcov-4.9
+           #- clang-3.7
+           #- valgrind
+           # Misc
+           #- python-yaml
+           - lcov
+           #- libopencv-dev
+         sources: &precise_latest_boost_sources
+           - ubuntu-toolchain-r-test
+           - llvm-toolchain-precise-3.7
+         artifacts: true  
+    
+before_install:
+    # Combine global build options with OS/compiler-dependent options
+    - export CMAKE_OPTIONS=${CMAKE_OPTIONS}" "${ENV_CMAKE_OPTIONS}
+    - export CXX_FLAGS=${CXX_FLAGS}" "${ENV_CXX_FLAGS}
+
+install:
+    - if [ "$CXX" = "clang++" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
+    - echo ${PATH}
+    - echo ${CXX}
+    - ${CXX} --version
+    - ${CXX} -v
+    - sudo pip install codecov
+    
+    # Download and install recent cmake
+    - |
+      if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then
+        CMAKE_URL="http://www.cmake.org/files/v3.5/cmake-3.5.1-Linux-x86_64.tar.gz"
+        mkdir -p ${DEPS_DIR}/cmake
+        travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C ${DEPS_DIR}/cmake
+        export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+      fi
+script:
+     - ./build.sh
+
+ 
+before_deploy:
+      # Set up git user name and tag this commit
+      - git config --local user.name yashrajsingh1998
+      - git config --local user.email yashrajs949@gmail.com
+      - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+      - git tag $TRAVIS_TAG
+      - ls /home/travis/build/yashrajsingh1998/github-action/
+      - ls /home/travis/build/yashrajsingh1998/github-action/build
+      - pwd
+      
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GITHUB_TOKEN
+  #on:
+    #tags: true
+    #branch: master
+    
+  #github_token: 897d37cbeb4825b4cbb4d7383cfe151d39fb0046
+  #file: /home/travis/build/yashrajsingh1998/github-action/build/test1
+  file: build/test1
+ # token:
+    #secure: mODR2iB9VBZjkUduhPPszzGfqLUlhLINMK6o8Xz/OVziObLec0wjHoMGZIYSUsLIKeA8kBvPQ2h6KM+0vlRkCYOyYJgZ/X5fYV1rT3ouJq7AJ8fCvsR5xqSH+dmlRyZkSde47jwEQLkuMrMZ3SE0FvRQk75IsTAmEEheu/zYRDDIKrAwWZBUbEskmrhi4+PxpO/TzKGMfST2bTRz8IzkespfqF1hwpcmTD0OR3KiXBK6gQ+Xc9/OMscOcmbOJwDL3ppb0875/1Z+5zgRmL2J1Mkv0jMCdgOh5GaxH9eJl1MoSpTKQNymW6L8HuV4is70xm8FD5DXdlNiK2F77R3O7v5y6XPZlwYUcAohQuM/KQ/VGPCS9inXU7dOE3fFvHvMV2stTpo+4zNW6ONK3wfKcZQEMWzEyLav00IyCKpCw7jGuMbOdinSwE+Hw6TFlENod+9X/wXK9zYjSI8CpOWapQBrucVYO51kZ9JtR6L02HcBfyZgn1aJTx//LFJovUGR2egfdWVku8awAldCBk/SUJf90a0XG3HLqH+vPIKrar2wh2nI2pfs7nuzqXpW09E95LMaYCOCuVwCYZtcGzUAk+rKBHPUgpKN5ZvHI0CtP0wjny6mKOvwZDSgIaj9tDACZz9N+qc0HnhEj7pMR8NRhVGSL4Pc+dj1Hq2kaKSNJhw=
+  
+  
