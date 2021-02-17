@@ -10,6 +10,7 @@ env:
     # Misc
     - RUN_TESTS=true
     - COVERAGE=false
+    - UNIT_TESTS=true COMPILER=g++-6     BOOST_VERSION=default ENABLE_MEMCHECK=true
 
 matrix:
   include:
@@ -17,13 +18,14 @@ matrix:
       dist: trusty
       sudo: true
       compiler: gcc
-      env: UNIT_TESTS=true COMPILER=g++-6     BOOST_VERSION=default ENABLE_MEMCHECK=true
+#       env: UNIT_TESTS=true COMPILER=g++-6     BOOST_VERSION=default ENABLE_MEMCHECK=true
       addons:
        apt:
          packages: 
 #            - boost1.67
            - gcc
            - g++-6
+           - libboost-all-dev
            #- gcov-4.9
            #- clang-3.7
            #- valgrind
@@ -63,28 +65,18 @@ script:
      - ./build.sh
 
  
-before_deploy:
-      # Set up git user name and tag this commit
-      - git config --local user.name yashrajsingh1998
-      - git config --local user.email yashrajs949@gmail.com
-      - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-      - git tag $TRAVIS_TAG
-      - ls /home/travis/build/yashrajsingh1998/github-action/
-      - ls /home/travis/build/yashrajsingh1998/github-action/build
-      - pwd
+# before_deploy:
+#       # Set up git user name and tag this commit
+#       - git config --local user.name yashrajsingh1998
+#       - git config --local user.email yashrajs949@gmail.com
+#       - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+#       - git tag $TRAVIS_TAG
       
-deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key: $GITHUB_TOKEN
-  #on:
-    #tags: true
-    #branch: master
-    
-  #github_token: 897d37cbeb4825b4cbb4d7383cfe151d39fb0046
-  #file: /home/travis/build/yashrajsingh1998/github-action/build/test1
-  file: build/test1
- # token:
-    #secure: mODR2iB9VBZjkUduhPPszzGfqLUlhLINMK6o8Xz/OVziObLec0wjHoMGZIYSUsLIKeA8kBvPQ2h6KM+0vlRkCYOyYJgZ/X5fYV1rT3ouJq7AJ8fCvsR5xqSH+dmlRyZkSde47jwEQLkuMrMZ3SE0FvRQk75IsTAmEEheu/zYRDDIKrAwWZBUbEskmrhi4+PxpO/TzKGMfST2bTRz8IzkespfqF1hwpcmTD0OR3KiXBK6gQ+Xc9/OMscOcmbOJwDL3ppb0875/1Z+5zgRmL2J1Mkv0jMCdgOh5GaxH9eJl1MoSpTKQNymW6L8HuV4is70xm8FD5DXdlNiK2F77R3O7v5y6XPZlwYUcAohQuM/KQ/VGPCS9inXU7dOE3fFvHvMV2stTpo+4zNW6ONK3wfKcZQEMWzEyLav00IyCKpCw7jGuMbOdinSwE+Hw6TFlENod+9X/wXK9zYjSI8CpOWapQBrucVYO51kZ9JtR6L02HcBfyZgn1aJTx//LFJovUGR2egfdWVku8awAldCBk/SUJf90a0XG3HLqH+vPIKrar2wh2nI2pfs7nuzqXpW09E95LMaYCOCuVwCYZtcGzUAk+rKBHPUgpKN5ZvHI0CtP0wjny6mKOvwZDSgIaj9tDACZz9N+qc0HnhEj7pMR8NRhVGSL4Pc+dj1Hq2kaKSNJhw=
+      
+# deploy:
+#   provider: releases
+#   skip_cleanup: true
+#   api_key: $GITHUB_TOKEN
+#   file: build/test1
   
   
