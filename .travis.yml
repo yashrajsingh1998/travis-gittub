@@ -5,8 +5,8 @@ addons:
     packages: libboost-all-dev
 cache:
   directories: 
-    - /build
-    - /.mtime_cache
+    - build
+    - .mtime_cache
     
 before_install:
   - sudo pip install codecov
