@@ -6,13 +6,13 @@ addons:
 cache:
   directories: 
     - build
-    - .mtime_cache
+#     - .mtime_cache
     
 before_install:
   - sudo pip install codecov
 
 script:
-  - - ruby ../bin/mtime_cache -g mtime_cache_globs.txt -c .mtime_cache/cache.json
+#   - - ruby ../bin/mtime_cache -g mtime_cache_globs.txt -c .mtime_cache/cache.json
   - ./build.sh
   #
 #   - /mtime_cache_demo
