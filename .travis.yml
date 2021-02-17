@@ -20,7 +20,7 @@ matrix:
       addons:
        apt:
          packages: 
-           - libboost1.72-all-dev
+           - libboost1.65-all-dev
            - gcc-4.8
            - g++-4.8
            #- gcov-4.9
