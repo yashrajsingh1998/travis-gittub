@@ -31,6 +31,7 @@ matrix:
            - lcov
            #- libopencv-dev
          sources: 
+           - sourceline: 'ppa:mhier/libboost-latest'
            - llvm-toolchain-precise-3.7 
            - ubuntu-toolchain-r-test
            
