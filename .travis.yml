@@ -19,7 +19,8 @@ matrix:
       compiler: gcc
       addons:
        apt:
-         packages: boost1.72.0
+         packages: 
+           - boost1.72.0
            - gcc-4.8
            - g++-4.8
            #- gcov-4.9
@@ -29,7 +30,8 @@ matrix:
            #- python-yaml
            - lcov
            #- libopencv-dev
-         sources: llvm-toolchain-precise-3.7 
+         sources: 
+           - llvm-toolchain-precise-3.7 
            - ubuntu-toolchain-r-test
            
          artifacts: true  
