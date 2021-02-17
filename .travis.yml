@@ -19,7 +19,8 @@ matrix:
       compiler: gcc
       addons:
        apt:
-         packages: &precise_latest_boost_packages
+         packages: 
+           - libboosst1.55-all-dev
            - gcc-4.8
            - g++-4.8
            #- gcov-4.9
@@ -30,7 +31,7 @@ matrix:
            - lcov
            #- libopencv-dev
          sources: 
-           - sourceline: &precise_latest_boost_packages
+           - sourceline: 
            - llvm-toolchain-precise-3.7 
            - ubuntu-toolchain-r-test
            
