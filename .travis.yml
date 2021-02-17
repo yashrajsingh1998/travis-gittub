@@ -21,8 +21,8 @@ matrix:
        apt:
          packages: &precise_latest_boost_packages
            - boost1.72
-#            - gcc
-           - g++6.0
+           - gcc-6
+           - g++-6
            #- gcov-4.9
            #- clang-3.7
            #- valgrind
