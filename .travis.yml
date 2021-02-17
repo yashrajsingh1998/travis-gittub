@@ -10,5 +10,19 @@ before_install:
 script:
   - ./build.sh
 
-after_success:
-  - codecov
+before_deploy:
+      # Set up git user name and tag this commit
+      - git config --local user.name yashrajsingh1998
+      - git config --local user.email yashrajs949@gmail.com
+      - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+      - git tag $TRAVIS_TAG
+      - ls /home/travis/build/yashrajsingh1998/github-action/
+      - ls /home/travis/build/yashrajsingh1998/github-action/build
+      - pwd
+      
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GITHUB_TOKEN
+  file: build/test1
+  
