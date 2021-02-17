@@ -20,7 +20,7 @@ matrix:
       addons:
        apt:
          packages: &precise_latest_boost_packages
-           - boost1.72
+#            - boost1.72
            - gcc
            - g++
            #- gcov-4.9
