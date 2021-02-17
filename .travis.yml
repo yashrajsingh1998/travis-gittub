@@ -19,8 +19,8 @@ matrix:
       compiler: gcc
       addons:
        apt:
-         packages: 
-           - boost1.67
+         packages: &precise_latest_boost_packages
+#            - boost1.67
            - gcc-4.8
            - g++-4.8
            #- gcov-4.9
@@ -30,8 +30,8 @@ matrix:
            #- python-yaml
            - lcov
            #- libopencv-dev
-         sources: 
-           - sourceline: 'ppa:mhier/libboost-latest'
+         sources: &precise_latest_boost_sources
+#            - sourceline: 'ppa:mhier/libboost-latest'
            - llvm-toolchain-precise-3.7 
            - ubuntu-toolchain-r-test
            
