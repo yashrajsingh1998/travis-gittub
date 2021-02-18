@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.12)
 
 SET( CONFIG_FILEPATH ${CMAKE_SOURCE_DIR}/cmake/config.cmake)
 
