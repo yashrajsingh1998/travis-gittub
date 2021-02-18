@@ -29,6 +29,6 @@ deploy:
   skip_cleanup: true
   api_key: $GITHUB_TOKEN
 
-  file: build/test1  
+  file: build/test
   
  
