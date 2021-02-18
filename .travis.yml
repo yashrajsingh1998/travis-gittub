@@ -1,25 +1,10 @@
-language: cpp
-compiler: gcc
-# addons:
-#   apt:
-#     packages: libboost-all-dev
 cache:
   timeout: 1000
   ccache: true
   directories: 
-#     - $HOME/deps
-#     - $HOME/.ccache
-    - build
-    - /home/travis/.hunter
-    
-#     - .mtime_cache
-    
-
-
+      - $HOME/.hunter
 script:
-#   - - ruby ../bin/mtime_cache -g mtime_cache_globs.txt -c .mtime_cache/cache.json
   - ./build.sh
   
-#   - /mtime_cache_demo
 
 
