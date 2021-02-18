@@ -10,6 +10,8 @@ cache:
 #     - $HOME/deps
 #     - $HOME/.ccache
     - build
+    - /home/travis/.hunter
+    
 #     - .mtime_cache
     
 before_install:
