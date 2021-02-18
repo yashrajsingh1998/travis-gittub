@@ -3,8 +3,8 @@ cache:
   ccache: true
   directories: 
 
-   
-    - /home/travis/.hunter
+    - $HOME/.hunter
+#     - /home/travis/.hunter
 
     
 
