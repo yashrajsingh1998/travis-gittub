@@ -1,8 +1,8 @@
 language: cpp
 compiler: gcc
-addons:
-  apt:
-    packages: libboost-all-dev
+# addons:
+#   apt:
+#     packages: libboost-all-dev
 cache:
   timeout: 1000
   ccache: true
@@ -14,8 +14,7 @@ cache:
     
 #     - .mtime_cache
     
-before_install:
-  - sudo pip install codecov
+
 
 script:
 #   - - ruby ../bin/mtime_cache -g mtime_cache_globs.txt -c .mtime_cache/cache.json
