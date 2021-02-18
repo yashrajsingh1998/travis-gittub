@@ -2,10 +2,13 @@ cache:
   timeout: 1000
   ccache: true
   directories: 
-      - build
-      - $HOME/.hunter
+
+   
+    - /home/travis/.hunter
+
+    
+
+
 script:
   - ./build.sh
   
-
-
