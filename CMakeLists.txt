@@ -26,6 +26,8 @@ add_executable(test
 )
 
 target_link_libraries(test
-    Boost::filesystem
+    Boost::system
+    Boost::thread
+    Boost::chrono
     ${OpenCV_LIBS}
 )   
