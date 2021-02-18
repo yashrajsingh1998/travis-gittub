@@ -5,7 +5,7 @@ addons:
     packages: libboost-all-dev
 cache:
   timeout: 1000
-  ccache
+  ccache: true
   directories: 
 #     - $HOME/deps
 #     - $HOME/.ccache
