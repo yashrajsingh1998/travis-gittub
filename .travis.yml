@@ -1,3 +1,13 @@
+matrix:
+  include:
+    - name: CUDA 10.2
+      env:
+      - CUDA=10.2.89-1
+      - CUDA_APT=10-2
+      - CUDA_SHORT=10.2
+      - UBUNTU_VERSION=ubuntu1804
+      dist: bionic
+
 cache:
   timeout: 1000
   ccache: true
@@ -5,5 +15,5 @@ cache:
     - $HOME/.hunter
 script:
   - ./build.sh
-  #
+  
  
