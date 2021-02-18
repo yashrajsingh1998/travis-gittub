@@ -4,10 +4,12 @@ addons:
   apt:
     packages: libboost-all-dev
 cache:
+  timeout: 1000
+  ccache
   directories: 
-    - $HOME/deps
-    - $HOME/.ccache
-#     - build
+#     - $HOME/deps
+#     - $HOME/.ccache
+    - build
 #     - .mtime_cache
     
 before_install:
