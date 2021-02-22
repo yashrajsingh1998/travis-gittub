@@ -10,7 +10,7 @@ matrix:
       dist: bionic
       
 before_install:
-  - wget -O cmake.sh https://cmake.org/files/v3.14/cmake-3.14.1-Linux-x86_64.sh
+  - wget -O cmake.sh https://cmake.org/files/v3.14/cmake-3.14.2-Linux-x86_64.sh
   - sudo sh cmake.sh --skip-license --exclude-subdir --prefix=/usr/local
   - export PATH=/usr/local/bin:$PATH
 cache:
